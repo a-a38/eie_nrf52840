@@ -6,3 +6,9 @@ git push - Upload commits to remote
 git merge - Merge one branch into another
 git rebase - Replay commits on top of another branch
 git fetch - Download remote changes without merging
+git add - Stage changes for commit
+git status - Show working tree status
+git log - Show commit history
+git diff - Show changes not yet staged
+git push -u <branch> - First push of a new branch to remote
+
