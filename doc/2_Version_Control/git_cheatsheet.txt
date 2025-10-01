@@ -1,0 +1,8 @@
+git commit - Save staged changes to repo history
+git branch - List or create branches
+git checkout <branch> - Switch to a branch
+git pull - Update local branch from remote
+git push - Upload commits to remote
+git merge - Merge one branch into another
+git rebase - Replay commits on top of another branch
+git fetch - Download remote changes without merging
