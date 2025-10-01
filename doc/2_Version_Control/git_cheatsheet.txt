@@ -1,8 +1,0 @@
-git commit: 
-git branch:
-git checkout:
-git pull:
-git push:
-git merge:
-git rebase:
-git fetch:
