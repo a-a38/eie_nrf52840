@@ -19,17 +19,24 @@ int main(void) {
 		if (!gpio_is_ready_dt(&leds[i])) {
 			return -1;
 		}
-	gpio_pin_configure_dt(&leds[i], GPIO_OUTPUT_ACTIVE);
+		ret = gpio_pin_configure_dt(&leds[i], GPIO_OUTPUT_ACTIVE);
 		if (ret < 0) {
 			return ret;
 		}
 	}
 
 	while (1) {
-		for (int i = 0; i <4; i++) {
-			gpio_pin_toggle_dt(&leds[i]);
-		}
-		k_msleep(1000);
+
+		gpio_pin_toggle_dt(&leds[0]);
+		gpio_pin_toggle_dt(&leds[2]);
+		gpio_pin_toggle_dt(&leds[3]);
+
+		gpio_pin_toggle_dt(&leds[1]);
+		k_msleep(250);
+		gpio_pin_toggle_dt(&leds[1]);
+
+		k_msleep(500);
 	}
 }
+
 
