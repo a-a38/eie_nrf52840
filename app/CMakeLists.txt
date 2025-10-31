@@ -9,4 +9,6 @@ find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 
 project(app LANGUAGES C)
 
+zephyr_include_directories(src)
+
 target_sources(app PRIVATE src/main.c)
