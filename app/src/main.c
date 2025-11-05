@@ -4,7 +4,11 @@
 
 #include <stdio.h>
 #include <zephyr/kernel.h>
+<<<<<<< HEAD
 #include <zephyr/drivers/gpio.h>
+=======
+#include <zephyr/sys/printk.h>
+>>>>>>> 04b671780342e4c799ea3c565aaf47354aee2dda
 
 /* 1000 msec = 1 sec */
 #define SLEEP_TIME_MS   1000
