@@ -2,49 +2,37 @@
  * main.c
  */
 
-#include <stdio.h>
+//#include <stdio.h>
+
+#include <inttypes.h>
 #include <zephyr/kernel.h>
-<<<<<<< HEAD
+#include <zephyr/device.h>
 #include <zephyr/drivers/gpio.h>
-=======
 #include <zephyr/sys/printk.h>
->>>>>>> 04b671780342e4c799ea3c565aaf47354aee2dda
 
-/* 1000 msec = 1 sec */
-#define SLEEP_TIME_MS   1000
+#include "BTN.h"
+#include "LED.h"
+#include "my_state_machine.h"
 
-/* The devicetree node identifier for the "led0" alias. */
-#define LED0_NODE DT_ALIAS(led0)
-
-/*
- * A build error on this line means your board is unsupported.
- * See the sample documentation for information on how to fix this.
- */
-static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
+#define SLEEP_MS 1
 
 int main(void)
 {
-    int ret;
-    bool led_state = true;
-
-    if (!gpio_is_ready_dt(&led)) {
+    if (0 > BTN_init()){
+        return 0;
+    }
+    if (0 > LED_init()){
         return 0;
     }
 
-    ret = gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE);
-    if (ret < 0) {
-        return 0;
-    }
+    state_machine_init();
 
-    while (1) {
-        ret = gpio_pin_toggle_dt(&led);
-        if (ret < 0) {
+    while (1){
+        int ret = state_machine_run();
+        if (0 > ret){
             return 0;
         }
-
-        led_state = !led_state;
-        printf("LED state: %s\n", led_state ? "ON" : "OFF");
-        k_msleep(SLEEP_TIME_MS);
-    }
+        k_msleep(SLEEP_MS);
+    } 
     return 0;
 }
